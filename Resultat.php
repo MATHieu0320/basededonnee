@@ -11,13 +11,20 @@
     <?php $DataPost = $_POST;
 
     try {
-        $mysqlClient = new PDO('mysql:host=localhost;dbname=partage_de_recettes;charset=utf8', 'root', '');
+        $mysqlClient = new PDO('mysql:host=localhost;dbname=nouveau;charset=utf8', 'root', '');
     } catch (Exception $e) {
         die('Erreur : ' . $e->getMessage());
     }
-    $recipesStatement = $mysqlClient->prepare('SELECT * FROM recipes');
+    $sqlQuery = 'SELECT * FROM recipes WHERE is_enabled = TRUE';
+    $recipesStatement = $mysqlClient->prepare($sqlQuery);
+
     $recipesStatement->execute();
 
+    // 'SELECT * FROM recipes' where author = "riche@gmail.com"
+    // SELECT * FROM recipes WHERE recipe_id; 
+    // limit 2 offset 1 en iliminant le first 
+    // order by title ordre alphabetique
+    // SELECT * FROM `recipes` ORDER BY title; 
     $recipes = $recipesStatement->fetchAll();
 
     foreach ($recipes as $key) {
