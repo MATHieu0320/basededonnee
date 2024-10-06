@@ -8,14 +8,15 @@
 </head>
 
 <body>
+    <h2>xx</h2>
     <?php $DataPost = $_POST;
 
     try {
-        $mysqlClient = new PDO('mysql:host=localhost;dbname=nouveau;charset=utf8', 'root', '');
+        $mysqlClient = new PDO('mysql:host=localhost;port=3307;dbname=nouveaudata;charset=utf8', 'root', "root");
     } catch (Exception $e) {
         die('Erreur : ' . $e->getMessage());
     }
-    $sqlQuery = 'SELECT * FROM recipes WHERE is_enabled = TRUE';
+    $sqlQuery = 'SELECT * FROM recipes ';
     $recipesStatement = $mysqlClient->prepare($sqlQuery);
 
     $recipesStatement->execute();
@@ -29,6 +30,7 @@
 
     foreach ($recipes as $key) {
         echo $key["author"];
+        echo $key["title"];
     }
 
     $tab = [
