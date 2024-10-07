@@ -16,22 +16,40 @@
     } catch (Exception $e) {
         die('Erreur : ' . $e->getMessage());
     }
-    $sqlQuery = 'SELECT * FROM recipes ';
-    $recipesStatement = $mysqlClient->prepare($sqlQuery);
 
-    $recipesStatement->execute();
+
+    $sqlQuery = 'SELECT * FROM recipes WHERE author = :author AND is_enabled = :is_enabled';
+
+    $recipesStatement = $mysqlClient->prepare($sqlQuery);
+    $recipesStatement->execute([
+        'author' => 'laurene.castor@exemple.com',
+        'is_enabled' => false,
+    ]);
+
+
+
+
+
 
     // 'SELECT * FROM recipes' where author = "riche@gmail.com"
     // SELECT * FROM recipes WHERE recipe_id; 
     // limit 2 offset 1 en iliminant le first 
     // order by title ordre alphabetique
     // SELECT * FROM `recipes` ORDER BY title; 
+    
+
+
+
+
     $recipes = $recipesStatement->fetchAll();
 
     foreach ($recipes as $key) {
         echo $key["author"];
         echo $key["title"];
+
+
     }
+
 
     $tab = [
 
