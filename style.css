@@ -1,0 +1,19 @@
+ul {
+  display: flex;
+  list-style-type: none;
+  width: 50%;
+  justify-content: space-between;
+  text-decoration: none;
+}
+a {
+  text-decoration: none;
+}
+#textarea {
+  resize: none;
+  height: 200px;
+  width: 300px;
+  outline: none;
+}
+input {
+  outline: none;
+}
