@@ -17,8 +17,15 @@
     }
 
     // $updatesq5 = $baseDeDonnee3->prepare('SELECT departement_nom from departement WHERE departement_code > 40');
+    
+    // jointure
     $updatesq5 = $baseDeDonnee3->
-        prepare('SELECT departement.departement_nom bolide.email from bolide INNERT JOIN bolide ON departement.id = bolide.id');
+        prepare('SELECT email, Modification ,departement_nom
+        FROM bolide
+        INNER JOIN departement
+        bolide_id ON departement_id 
+        limit 2
+        ');
 
     $updatesq5->execute();
 
@@ -33,7 +40,9 @@
 
 
     ?>
-
+    <pre>
+ <?php print_r($final) ?>    </pre>
+    </pre>
 </body>
 
 </html>
